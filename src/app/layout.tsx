@@ -1,5 +1,6 @@
 
 import ClientOnly from './components/ClientOnly'
+import RegisterModel from './components/models/RegisterModel'
 // import Modal from './components/models/Models'
 import Navbar from './components/navbar/Navbar'
 import './globals.css'
@@ -20,14 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
-           <Navbar/>
-           {/* <Modal 
-              isOpen 
-              title='some title' 
-              body={"some body"} 
-              actionLabel='Submit'
-              secondarylabel='Cancel' 
-            /> */}
+        <ClientOnly>
+          <Navbar />
+          <RegisterModel/>
+        </ClientOnly>
         {children}
       </body>
     </html>

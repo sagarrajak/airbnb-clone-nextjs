@@ -11,6 +11,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
 }) => {
     return <>
         <div
+            onClick={onClick}
             className="
              px-4
              py-3

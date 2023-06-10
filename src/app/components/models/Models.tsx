@@ -95,8 +95,8 @@ const Modal: React.FC<ModelProps> = ({
           translate
           duration-300
           h-full
-          ${isOpen ? `translate-y-0` : "translate-y-full"}
-          ${isOpen ? "opacity-100" : "opacity-0"}
+          ${isModelVisible ? `translate-y-0` : "translate-y-full"}
+          ${isModelVisible ? "opacity-100" : "opacity-0"}
         `}
         >
           <div
@@ -129,6 +129,7 @@ const Modal: React.FC<ModelProps> = ({
           "
             >
               <button
+                onClick={handleClose}
                 className="
               p-1
               border-0
