@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from 'react'
 import { IoMdClose } from 'react-icons/io'
+import Button from '../Button';
 
 export interface ModelProps {
     isOpen: boolean;
@@ -176,7 +177,17 @@ const Modal: React.FC<ModelProps> = ({
                   w-full
                 "
               >
-                
+                {secondarylabel && secondaryAction && (<Button
+                  label={secondarylabel}
+                  onClick={handleSecondaryAction}
+                  disabled={disabled}
+                  outline
+                />)}
+                <Button 
+                  label={actionLabel || ''} 
+                  onClick={handleSubmit} 
+                  disabled={disabled} 
+                />
               </div>
             </div>
           </div>

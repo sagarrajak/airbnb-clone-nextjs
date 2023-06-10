@@ -1,6 +1,6 @@
 
 import ClientOnly from './components/ClientOnly'
-import Modal from './components/models/Models'
+// import Modal from './components/models/Models'
 import Navbar from './components/navbar/Navbar'
 import './globals.css'
 import { Nunito } from 'next/font/google'
@@ -21,7 +21,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
            <Navbar/>
-           <Modal isOpen title='some title' body={"some body"} />
+           {/* <Modal 
+              isOpen 
+              title='some title' 
+              body={"some body"} 
+              actionLabel='Submit'
+              secondarylabel='Cancel' 
+            /> */}
         {children}
       </body>
     </html>
