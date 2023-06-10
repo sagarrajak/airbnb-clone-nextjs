@@ -7,26 +7,22 @@ import { FcGoogle } from 'react-icons/fc'
 import { useState, useCallback } from 'react'
 import {
     useForm,
-    FieldValue,
+    FieldValues,
     SubmitHandler
 } from 'react-hook-form';
 import useRegisterModel from '@/app/hooks/useRegisterModel'
 import Modal from './Models'
+import Heading from '../heading/Heading'
+import { Input } from '../input/Input'
 
 export interface RegisterModelInterface {
 
 }
 
-interface LoginForm {
-    name: string;
-    email: string;
-    password: string;
-}
-
 const RegisterModel: React.FC<RegisterModelInterface> = ({ }) => {
     const registerModel = useRegisterModel();
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const { register, handleSubmit, formState: { errors } } = useForm<LoginForm>({
+    const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>({
         mode: 'all',
         defaultValues: {
             name: "",
@@ -35,7 +31,7 @@ const RegisterModel: React.FC<RegisterModelInterface> = ({ }) => {
         }
     });
 
-    const onSubmit: SubmitHandler<LoginForm> = (data) => {
+    const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
         axios.post('/api/register', data).then(() => {
 
@@ -46,7 +42,46 @@ const RegisterModel: React.FC<RegisterModelInterface> = ({ }) => {
         .finally(() => {
             setIsLoading(false)
         })
-}
+    }
+
+    const bodyContent = (
+        <div className="
+          flex
+          flex-col
+          gap-3
+        ">
+            <Heading
+                title='Welcome to airbnb'
+                subTitle='Create an account'
+            />
+            <Input
+                id='email'
+                label='Email'
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+            />
+            <Input
+                id='name'
+                label='Name'
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+            />
+            <Input
+                id='password'
+                label='password'
+                disabled={isLoading}
+                register={register}
+                type='password'
+                errors={errors}
+            />
+        </div>
+    );
+
+    const footerContent = (
+        
+    )
 
     return (
         <Modal
@@ -58,6 +93,7 @@ const RegisterModel: React.FC<RegisterModelInterface> = ({ }) => {
                 registerModel.onClose()
             }}
             onSubmit={handleSubmit(onSubmit)}
+            body={bodyContent}
         />
     )
 }
