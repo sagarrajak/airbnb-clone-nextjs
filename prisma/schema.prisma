@@ -11,64 +11,65 @@ datasource db {
 }
 
 model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  email String? @unique
-  name String? @unique
-  emailVerified String?
-  image String?
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  email          String?  @unique
+  name           String?  @unique
+  emailVerified  String?
+  image          String?
   hashedPassword String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  favoriteIds String[] @db.ObjectId
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now())
+  favoriteIds    String[] @db.ObjectId
 
-  accounts Account[] 
-  listings Listings[]
+  accounts     Account[]
+  listings     Listings[]
   reservations Reservations[]
 }
 
 model Account {
-    id String @id @default(auto()) @map("_id") @db.ObjectId
-    userId String @db.ObjectId
-    type String
-    provider String
-    providerAccountId String
-    refresh_token String? @db.String
-    access_token String? @db.String
-    expire_at Int?
-    token_type String?
-    scope String?
-    id_token String? @db.ObjectId
-    session_state String?
-    user User @relation(fields: [userId], references: [id])
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expire_at         Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.ObjectId
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id])
 
-    @@unique([provider, providerAccountId])
+  @@unique([provider, providerAccountId])
 }
 
 model Listings {
-  id String @id @default(auto()) @map("_id") @db.ObjectId 
-  title String
-  description String
-  imageSrc String
-  createdAt DateTime @default(now())
-  category String
-  roomCount Int
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  description   String
+  imageSrc      String
+  createdAt     DateTime       @default(now())
+  category      String
+  roomCount     Int
   bathroomCount Int
-  guestCount Int
+  guestCount    Int
   locationValue String
-  userId String @db.ObjectId
-  price Int
-  user User @relation(fields: [userId], references: [id])
-  reservations Reservations[]
+  userId        String         @db.ObjectId
+  price         Int
+  user          User           @relation(fields: [userId], references: [id])
+  reservations  Reservations[]
 }
 
 model Reservations {
-  id String @id @default(auto()) @map("_id") @db.ObjectId 
-  userId String @db.ObjectId
-  listingId String @db.ObjectId
-  startDate DateTime
-  endDate DateTime
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @db.ObjectId
+  listingId  String   @db.ObjectId
+  startDate  DateTime
+  endDate    DateTime
   totalPrice Int
-  createdAt DateTime @default(now())
-  user User @relation(fields: [userId], references: [id])
-  listing Listings @relation(fields: [listingId], references: [id])
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+  listing    Listings @relation(fields: [listingId], references: [id])
 }
+
