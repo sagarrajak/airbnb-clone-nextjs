@@ -35,11 +35,11 @@ const RegisterModel: React.FC<RegisterModelInterface> = ({ }) => {
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
-        axios.post('/api/register', data).then(() => {
-
+        axios.post('/api/register', data).then((res) => {
+          toast.success("User added successfully!");
         })
         .catch((err) => {
-            toast.error(err.message || 'Something went wrong!')
+            toast.error(err.response.data.message || 'Something went wrong!')
         })
         .finally(() => {
             setIsLoading(false)
