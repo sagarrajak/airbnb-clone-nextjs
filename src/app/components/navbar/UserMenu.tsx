@@ -4,12 +4,14 @@ import { AiOutlineMenu } from 'react-icons/ai'
 import Avatar from '../Avatar'
 import { MenuItem } from '../MenuItem'
 import useRegisterModel from '@/app/hooks/useRegisterModel'
+import useLoginModel from '@/app/hooks/useLoginModel'
 
 const UserMenu = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const registerModel = useRegisterModel();
+  const loginModel = useLoginModel();
 
-  const toggleOpen = useCallback(() => {
+  const toggleMenuOpen = useCallback(() => {
     setOpen((state) => !state);
   }, [setOpen]);
 
@@ -38,7 +40,7 @@ const UserMenu = () => {
         >
           Airbnb your home
         </div>
-        <div onClick={toggleOpen}
+        <div onClick={toggleMenuOpen}
           className="
               p-4
               md:py-1
@@ -85,15 +87,15 @@ const UserMenu = () => {
               <>
                 <MenuItem 
                   onClick={() => {
-                    // registerModel.onOpen();
-                    // toggleOpen()
+                    loginModel.onOpen();
+                    toggleMenuOpen()
                   }}
                   label='Log In'
                 />
                 <MenuItem 
                   onClick={() => {
                     registerModel.onOpen();
-                    toggleOpen()
+                    toggleMenuOpen()
                   }} 
                   label='Sign up' 
                 />
