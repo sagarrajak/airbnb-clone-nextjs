@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { BiSearch } from 'react-icons/bi'
+import React from "react";
+import { BiSearch } from "react-icons/bi";
 
 const Search = () => {
   return (
     <div
-        className="
+      className="
             border-[1px]
             w-full
             md:w-auto
@@ -18,21 +18,25 @@ const Search = () => {
             cursor-pointer
         "
     >
-        <div className="
+      <div
+        className="
             flex
             flex-row
             items-center
             justify-between
-        ">
-            <div className="
+        "
+      >
+        <div
+          className="
                 text-sm
                 font-semibold
                 px-6
-            ">
-                Anywhere
-            </div>
-            <div
-                className="
+            "
+        >
+          Anywhere
+        </div>
+        <div
+          className="
                     hidden
                     sm:block
                     text-sm
@@ -42,11 +46,11 @@ const Search = () => {
                     flex-1
                     text-center
                 "
-            >
-                Any week
-            </div>
-            <div
-                className="
+        >
+          Any week
+        </div>
+        <div
+          className="
                     text-sm
                     pl-6
                     pr-2
@@ -57,24 +61,28 @@ const Search = () => {
                     justify-between
                     items-center
                 "
-            >
-                <div className="
+        >
+          <div
+            className="
                     hidden
                     sm:block
-                ">
-                    Add Guest
-                </div>
-                <div className='
+                "
+          >
+            Add Guest
+          </div>
+          <div
+            className="
                     p-2
                     bg-red-500
                     rounded-full
-                '>
-                    <BiSearch/>
-                </div>
-            </div>
+                "
+          >
+            <BiSearch />
+          </div>
         </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;

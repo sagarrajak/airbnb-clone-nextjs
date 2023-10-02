@@ -5,8 +5,14 @@ import Avatar from '../Avatar'
 import { MenuItem } from '../MenuItem'
 import useRegisterModel from '@/app/hooks/useRegisterModel'
 import useLoginModel from '@/app/hooks/useLoginModel'
+import { User } from '@prisma/client'
+import { signOut } from 'next-auth/react'
+import { HydrationSafeUser } from '@/app/actions/getCurrentUsers'
+export interface UserMenuProps {
+  currentUser?: HydrationSafeUser | null
+}
 
-const UserMenu = () => {
+const UserMenu = ({ currentUser }: UserMenuProps) => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const registerModel = useRegisterModel();
   const loginModel = useLoginModel();
@@ -85,20 +91,62 @@ const UserMenu = () => {
               cursor-pointer
             ">
               <>
-                <MenuItem 
-                  onClick={() => {
-                    loginModel.onOpen();
-                    toggleMenuOpen()
-                  }}
-                  label='Log In'
-                />
-                <MenuItem 
-                  onClick={() => {
-                    registerModel.onOpen();
-                    toggleMenuOpen()
-                  }} 
-                  label='Sign up' 
-                />
+                {
+                  !currentUser ? (
+                    <>
+                      <MenuItem
+                        onClick={() => {
+                          loginModel.onOpen();
+                          toggleMenuOpen()
+                        }}
+                        label='Log In'
+                      />
+                      <MenuItem
+                        onClick={() => {
+                          registerModel.onOpen();
+                          toggleMenuOpen()
+                        }}
+                        label='Sign up'
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <MenuItem
+                        onClick={() => {
+                        }}
+                        label='My Trips'
+                      />
+                      <MenuItem
+                        onClick={() => {
+                        }}
+                        label='My favourites'
+                      />
+                      <MenuItem
+                        onClick={() => {
+                        }}
+                        label='My reservations'
+                      />
+                      <MenuItem
+                        onClick={() => {
+                        }}
+                        label='My properties'
+                      />
+                      <MenuItem
+                        onClick={() => {
+                        }}
+                        label='Airbnb my home'
+                      />
+                      <hr />
+                      <MenuItem
+                        onClick={() => {
+                          signOut()
+                        }}
+                        label='Logout'
+                      />
+                    </>
+                  )
+                }
+
               </>
             </div>
           </div>
