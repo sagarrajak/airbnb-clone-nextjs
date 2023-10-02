@@ -8,14 +8,19 @@ export async function getSession() {
     return await getServerSession(authOption)
 }
 
-export default async function getCurrentUser(): Promise<User | null> {
+export type HydrationSafeUser = Omit<User, 'createdAt' | 'updatedAt'> & {
+    createdAt: string,
+    updatedAt: string
+}
+
+export default async function getCurrentUser(): Promise<HydrationSafeUser | null> {
     try {
         const session = await getSession();
         if (!session?.user?.email) {
             return null;
         }
         const email = session?.user?.email;
-        
+
         const currentUser = await prisma?.user.findUnique({
             where: {
                 email,
@@ -24,7 +29,11 @@ export default async function getCurrentUser(): Promise<User | null> {
         if (!currentUser) {
             return null
         }
-        return currentUser;
+        return {
+            ...currentUser,
+            createdAt: currentUser.createdAt.toISOString(),
+            updatedAt: currentUser.updatedAt.toISOString()
+        };
     } catch (error) {
         return null
     }
