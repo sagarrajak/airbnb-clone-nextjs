@@ -6,6 +6,7 @@ import Search from './Search'
 import UserMenu from './UserMenu'
 import { User } from '@prisma/client'
 import { HydrationSafeUser } from '@/app/actions/getCurrentUsers'
+import Categories from '../categories/Categories'
 
 export interface NavbarProps {
   currentUser?: HydrationSafeUser | null
@@ -30,6 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({currentUser}) => {
           </div>
         </Container>
       </div>
+      <Categories/>
     </div>
   )
 }
