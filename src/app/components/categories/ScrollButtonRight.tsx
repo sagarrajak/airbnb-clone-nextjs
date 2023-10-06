@@ -12,7 +12,7 @@ function ScrollButtonRight({ disabled, onClick }: ButtonProps) {
         w-[30px]
         h-[30px]
         border
-        border-black
+        border-neutral-800
         rounded-full
         hover:shadow-lg
         hover:shadow-gray-400
