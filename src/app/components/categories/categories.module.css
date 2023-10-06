@@ -1,0 +1,26 @@
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+}
+
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+/* Hide the horizontal scrollbar (if needed) */
+::-webkit-scrollbar-horizontal {
+    display: none;
+}
+
+/* Optionally, style the thumb or track if needed */
+::-webkit-scrollbar-thumb {
+    background: none;
+    /* You can customize the background color or image */
+}
+
+::-webkit-scrollbar-track {
+    background: none;
+    /* You can customize the track background color or image */
+}
