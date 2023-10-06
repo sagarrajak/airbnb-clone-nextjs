@@ -9,7 +9,7 @@ export interface CategoriesBoxProps {
     selected: boolean
 }
 
-function CategoriesBox({ label, Icon, selected }: CategoriesBoxProps) {
+const CategoriesBox = React.forwardRef(({ label, Icon, selected }: CategoriesBoxProps, ref: any) => {
     const router = useRouter();
     const params = useSearchParams();
 
@@ -40,6 +40,7 @@ function CategoriesBox({ label, Icon, selected }: CategoriesBoxProps) {
 
     return (
         <div
+            ref={ref}
             className={`
                 flex
                 flex-col
@@ -53,6 +54,9 @@ function CategoriesBox({ label, Icon, selected }: CategoriesBoxProps) {
                 hover:text-neutral-800
                 ${selected ? 'border-b-neutral-800' : 'border-transparent'}
                 ${selected ? 'text-neutral-800': 'text-neutral-500'}
+                w-28
+                flex-auto
+                shrink-0
             `}
             onClick={handleClick}
         >
@@ -63,6 +67,8 @@ function CategoriesBox({ label, Icon, selected }: CategoriesBoxProps) {
             ">{label}</label>
         </div>
     )
-}
+})
+
+CategoriesBox.displayName = 'CategoriesBox';
 
 export default CategoriesBox
