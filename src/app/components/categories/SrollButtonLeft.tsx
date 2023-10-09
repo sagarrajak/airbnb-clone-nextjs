@@ -1,17 +1,20 @@
-import React from 'react'
+import React from "react";
 import { RiArrowDropLeftLine } from "react-icons/ri";
 export interface ButtonProps {
-    disabled?: boolean;
-    onClick?: (evt: any) => void;
+  disabled?: boolean;
+  onClick?: (evt: any) => void;
 }
 
-function ScrollButtonLeft({disabled, onClick}: ButtonProps) {
-  return (
-    <button className="
+const ScrollButtonLeft = React.forwardRef(
+  ({ disabled, onClick }: ButtonProps, ref: any) => {
+    return (
+      <button
+        ref={ref}
+        className="
         w-[30px]
         h-[30px]
         border
-        border-black
+        border-gray-400
         rounded-full
         hover:shadow-lg
         hover:shadow-gray-400
@@ -19,12 +22,15 @@ function ScrollButtonLeft({disabled, onClick}: ButtonProps) {
         hover:h-[31px]
         transition
     "
-    disabled={disabled}
-    onClick={onClick}
-    >
-        <RiArrowDropLeftLine size={30}/>
-    </button>
-  )
-}
+        disabled={disabled}
+        onClick={onClick}
+      >
+        <RiArrowDropLeftLine size={30} />
+      </button>
+    );
+  }
+);
 
-export default ScrollButtonLeft
+ScrollButtonLeft.displayName = "ScrollButtonLeft";
+
+export default ScrollButtonLeft;
