@@ -21,6 +21,7 @@ const ScrollButtonLeft = React.forwardRef(
         hover:w-[31px]
         hover:h-[31px]
         transition
+        md:visible
     "
         disabled={disabled}
         onClick={onClick}

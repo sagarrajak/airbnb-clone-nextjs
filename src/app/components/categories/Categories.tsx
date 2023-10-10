@@ -3,6 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Container from "../Container";
 import { TbBeach, TbMountain, TbPool } from "react-icons/tb";
+import { CiSliderHorizontal } from "react-icons/ci";
+
 import {
   GiBarn,
   GiBoatFishing,
@@ -26,6 +28,9 @@ import ScrollButtonLeft from "./SrollButtonLeft";
 import ScrollButtonRight from "./ScrollButtonRight";
 import styles from "./Categories.module.css";
 import useCurrentWindowWidth from "@/app/hooks/useCurrentWindowWidth";
+import Button from "../Button";
+import FilterButton from "./FilterButton";
+import DisplayTotalBeforetaxes from "./DisplayTotalBeforetaxes";
 
 export interface CategoriesProps {}
 
@@ -140,13 +145,16 @@ export const Categories = ({}: CategoriesProps) => {
     };
   });
 
-  const scrollElementToPosition = React.useCallback((currentIndex: number) => {
-    if (currentIndex >= 0 && currentIndex < categoryRefArray.length)
-    categoryRefArray[currentIndex].current?.scrollIntoView({
-      behavior: "smooth",
-    });
-  }, [categoryRefArray]);
-  
+  const scrollElementToPosition = React.useCallback(
+    (currentIndex: number) => {
+      if (currentIndex >= 0 && currentIndex < categoryRefArray.length)
+        categoryRefArray[currentIndex].current?.scrollIntoView({
+          behavior: "smooth",
+        });
+    },
+    [categoryRefArray]
+  );
+
   // use intersection obeserver to monitor
   useEffect(() => {
     const overserverArray = Array.from(
@@ -201,41 +209,70 @@ export const Categories = ({}: CategoriesProps) => {
   return (
     <Container>
       <div
-        ref={categoriesContainer}
         className={`
-                flex
-                flex-row
-                w-fit
-                items-center
-                justify-between
-                ${styles["scrollbar-hide"]}
-            `}
+          flex
+          flex-row
+          justify-between
+          items-center
+      `}
       >
-        <ScrollButtonLeft ref={leftMenuButton} onClick={onClickLeftButton} />
+        <div
+          ref={categoriesContainer}
+          className={`
+              flex
+              flex-row
+              md:w-[70%]
+              sm:w-full
+              items-center
+              justify-between
+              ${styles["scrollbar-hide"]}
+          `}
+        >
+          <ScrollButtonLeft ref={leftMenuButton} onClick={onClickLeftButton} />
+          <div
+            className="
+                  pt-4
+                  flex
+                  justify-between
+                  flex-row
+                  items-center
+                  overflow-y-hidden
+                  overflow-x-scroll
+                  w-[70rem]
+                  scrollbar-hide
+              "
+          >
+            {categories.map(({ label, description, icon }, index) => (
+              <CategoriesBox
+                ref={categoryRefArray[index]}
+                Icon={icon}
+                label={label}
+                selected={label === category}
+                key={label}
+              />
+            ))}
+          </div>
+          <ScrollButtonRight onClick={onClickRightButton} />
+        </div>
         <div
           className="
-                    pt-4
-                    flex
-                    justify-between
-                    flex-row
-                    items-center
-                    overflow-y-hidden
-                    overflow-x-scroll
-                    w-[70rem]
-                    scrollbar-hide
-                "
+            flex
+            flex-row
+            ml-2
+            md:visible
+          "
         >
-          {categories.map(({ label, description, icon }, index) => (
-            <CategoriesBox
-              ref={categoryRefArray[index]}
-              Icon={icon}
-              label={label}
-              selected={label === category}
-              key={label}
+          <div className="shrink-0 mr-6">
+            <FilterButton label={"Filter"} onClick={() => {}} />
+          </div>
+          <div className="shrink-0">
+            <DisplayTotalBeforetaxes
+              label={"Display total before taxes"}
+              onClick={() => {}}
             />
-          ))}
+          </div>
         </div>
-        <ScrollButtonRight onClick={onClickRightButton} />
+       
       </div>
     </Container>
   );
