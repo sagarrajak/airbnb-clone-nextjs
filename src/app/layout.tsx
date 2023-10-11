@@ -8,6 +8,7 @@ import { Nunito } from 'next/font/google'
 import { ToasterProvider } from './providers/ToasterProvider'
 import LoginModel from './components/models/LoginModel'
 import getCurrentUser from './actions/getCurrentUsers'
+import FilterModel from './components/models/FilterModel/FilterModel'
 
 const nunito = Nunito({ subsets: ['latin'] })
 
@@ -30,6 +31,7 @@ export default async function RootLayout({
           <ToasterProvider />
           <Navbar currentUser={currentUser} />
           <RegisterModel/>
+          <FilterModel />
           <LoginModel />
         </ClientOnly>
         {children}

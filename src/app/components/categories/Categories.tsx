@@ -31,6 +31,7 @@ import useCurrentWindowWidth from "@/app/hooks/useCurrentWindowWidth";
 import Button from "../Button";
 import FilterButton from "./FilterButton";
 import DisplayTotalBeforetaxes from "./DisplayTotalBeforetaxes";
+import useFilterModel from "@/app/hooks/useFilterModel";
 
 export interface CategoriesProps {}
 
@@ -105,6 +106,8 @@ export const Categories = ({}: CategoriesProps) => {
   const searchParams = useSearchParams();
   const category = searchParams?.get("category");
   const categoriesContainer = useRef<HTMLDivElement>(null);
+  const filterModel = useFilterModel();
+
 
   const [windowWidth, setWindowWidth] = useState(
     !categoriesContainer.current ? 0 : categoriesContainer.current.offsetWidth
@@ -263,7 +266,7 @@ export const Categories = ({}: CategoriesProps) => {
           "
         >
           <div className="shrink-0 mr-6">
-            <FilterButton label={"Filter"} onClick={() => {}} />
+            <FilterButton label={"Filter"} onClick={filterModel.onOpen} />
           </div>
           <div className="shrink-0">
             <DisplayTotalBeforetaxes
