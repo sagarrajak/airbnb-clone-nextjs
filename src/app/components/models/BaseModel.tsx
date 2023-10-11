@@ -60,7 +60,7 @@ const BaseModel: React.FC<BaseModelProps> = ({
         w-full
         relative
         sm:w-full
-        md:w-[50rem]
+        md:w-[56rem]
         sm:h-[80%]
         my-6
         mx-auto
@@ -131,7 +131,7 @@ const BaseModel: React.FC<BaseModelProps> = ({
             <div
               className="
               relative 
-              p-6
+              p-1
               flex-auto
             "
             >

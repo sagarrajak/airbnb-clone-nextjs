@@ -4,19 +4,20 @@ export interface FilterItemContainerProps {
   children: React.ReactElement;
   header: string;
   subheader: string;
+  shouldApplyPaddingLeftRight?: boolean
 }
 
 function FilterItemContainer({
   children,
   header,
   subheader,
+  shouldApplyPaddingLeftRight
 }: FilterItemContainerProps) {
   return (
     <div
-      // className="
-      //       border-b-2
-      //       border-b-neutral-800/70
-      //     "
+      className="
+           border-b-[1px]
+          "
     >
       <div>
         <p
@@ -29,14 +30,19 @@ function FilterItemContainer({
         </p>
         <p
           className="
-              text-sm
+              text-base
               font-light
+              mt-2
             "
         >
           {subheader}
         </p>
       </div>
+      <div className={`
+          ${shouldApplyPaddingLeftRight ? 'p-6' :'pt-6 pb-6'}
+      `}>
       {children}
+      </div>
     </div>
   );
 }
