@@ -5,7 +5,7 @@ import React from "react";
 import BaseModel from "../BaseModel";
 import FilterItemContainer from "./FilterItemContainer";
 import TypeOfPlaces from "./TypeOfPlaces";
-import RoomsAndBeds from "./RoomsAndBeds";
+import RoomsAndBeds from "./PriceRange";
 
 function FilterModel() {
   const filterModel = useFilterModel();

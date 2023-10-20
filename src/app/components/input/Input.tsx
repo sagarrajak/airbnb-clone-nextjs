@@ -4,7 +4,7 @@ import { FC } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { BiDollar } from "react-icons/bi";
 
-interface InputProps {
+interface InputProps extends React.HTMLAttributes<HTMLInputElement>{
     id: string;
     label: string;
     register: UseFormRegister<FieldValues>;
@@ -24,6 +24,7 @@ export const Input: FC<InputProps> = ({
     required,
     register,
     errors,
+    className
 }) => {
     return (
         <div
@@ -69,7 +70,7 @@ export const Input: FC<InputProps> = ({
                         ? "focus:border-rose-500"
                         : "focus:border-black"
                     }
-
+                    ${className}
                 `}
             />
             <label

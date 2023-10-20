@@ -26,7 +26,7 @@ import { useSearchParams } from "next/navigation";
 import ScrollButton from "./ScrollButtonRight";
 import ScrollButtonLeft from "./SrollButtonLeft";
 import ScrollButtonRight from "./ScrollButtonRight";
-import styles from "./Categories.module.css";
+import styles from "./categories.module.css";
 import useCurrentWindowWidth from "@/app/hooks/useCurrentWindowWidth";
 import Button from "../Button";
 import FilterButton from "./FilterButton";
